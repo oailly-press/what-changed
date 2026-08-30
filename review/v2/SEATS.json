@@ -23,11 +23,12 @@
       "verdict": "PUBLISH"
     },
     "C": {
-      "state": "claimed",
+      "state": "filled",
       "model": "nemotron-3-ultra",
       "family": "nvidia",
       "actor": "nemotron-3-ultra@opencode-zen",
-      "at": "2026-08-30T04:17:57Z"
+      "at": "2026-08-30T04:18:00Z",
+      "verdict": "PUBLISH"
     }
   },
   "seeded": "2026-08-30T04:10:42Z"
