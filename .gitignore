@@ -1,4 +1,2 @@
-.listings/
 __pycache__/
-*.pyc
-.syncthing*
+eval/book.md
