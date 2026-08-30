@@ -1,0 +1,248 @@
+{
+  "manifest_version": "1.0",
+  "book": {
+    "title": "What Changed",
+    "subtitle": "Reading diffs, for the machines that review them",
+    "tier": "pocket",
+    "language": "en",
+    "audience": "Language-model agents that read diffs \u2014 reviewing, summarizing, or gating changes \u2014 and the people who supervise them; assumes the ability to read a unified diff and no git-internals knowledge.",
+    "edition": 1,
+    "series": "O'AILLY For Machine Readers",
+    "isbn": null
+  },
+  "structure": {
+    "word_count_body": 25975,
+    "print_equivalent_pages": 87,
+    "chapters": [
+      {
+        "number": 1,
+        "title": "A Diff Is Not a State",
+        "words": 3374,
+        "source_file": "ch01-a-diff-is-not-a-state.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          },
+          {
+            "model": "claude-opus-5",
+            "version": "claude-opus-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 2,
+        "title": "The Base You Did Not Choose",
+        "words": 3366,
+        "source_file": "ch02-the-base-you-did-not-choose.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          },
+          {
+            "model": "claude-opus-5",
+            "version": "claude-opus-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 3,
+        "title": "Marks and Their Meanings",
+        "words": 3333,
+        "source_file": "ch03-marks-and-their-meanings.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          },
+          {
+            "model": "claude-opus-5",
+            "version": "claude-opus-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 4,
+        "title": "The Summary That Disagrees With Itself",
+        "words": 3463,
+        "source_file": "ch04-the-summary-that-disagrees-with-itself.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          },
+          {
+            "model": "claude-opus-5",
+            "version": "claude-opus-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 5,
+        "title": "Moves, Renames, and Similarity",
+        "words": 3432,
+        "source_file": "ch05-moves-renames-and-similarity.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          },
+          {
+            "model": "claude-opus-5",
+            "version": "claude-opus-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 6,
+        "title": "Invisible Changes",
+        "words": 3001,
+        "source_file": "ch06-invisible-changes.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 7,
+        "title": "Deletions Are Changes Too",
+        "words": 2870,
+        "source_file": "ch07-deletions-are-changes-too.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      },
+      {
+        "number": 8,
+        "title": "Judging a Change",
+        "words": 3136,
+        "source_file": "ch08-judging-a-change.md",
+        "written_by": [
+          {
+            "model": "claude-fable-5",
+            "version": "claude-fable-5",
+            "operator": "RogerAI Labs"
+          }
+        ]
+      }
+    ],
+    "has_glossary_or_index": true,
+    "code_listing_policy": "executable_plus_marked_fragments"
+  },
+  "provenance": {
+    "written_by": [
+      {
+        "model": "claude-fable-5",
+        "version": "claude-fable-5",
+        "operator": "RogerAI Labs"
+      },
+      {
+        "model": "claude-opus-5",
+        "version": "claude-opus-5",
+        "operator": "RogerAI Labs"
+      }
+    ],
+    "grounded_in": [
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-diff",
+        "note": "unified format, two/three-dot ranges, -M similarity threshold, --stat/--numstat/--name-status, -w, --word-diff, -U"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-show",
+        "note": "commit display and the combined rendering for merges"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-log",
+        "note": "-p and its omission of merge diffs; path limiting and --follow"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-patch-id",
+        "note": "change identity across rewritten histories (ch2)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-merge-base",
+        "note": "the anchor a three-dot comparison uses (ch2)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/gitattributes",
+        "note": "eol normalization and filters that make stored form differ from working tree (ch6)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/docs/git-clone",
+        "note": "shallow clones and the omitted history (ch2)"
+      },
+      {
+        "kind": "url",
+        "reference": "https://git-scm.com/book/en/v2",
+        "note": "object model behind ch5's rename argument"
+      },
+      {
+        "kind": "dataset",
+        "reference": "authoring-machine transcripts 2026-08-29 (Gentoo, git listings in scratch repositories with pinned identity and dates), reproduced in the text as real outputs",
+        "note": "every listing executed under PATH=/usr/bin:/bin, non-root; re-verified byte-for-byte by .listings/verify.py and checked for machine-varying values by .listings/check_portable.py"
+      }
+    ],
+    "verified_by": {
+      "name": "Roger AI",
+      "role": "founder / verifier",
+      "contact": null
+    },
+    "tools": [
+      "git + bash (listing execution during authoring, scratch repositories)",
+      "O'AILLY pass1 gate (local runs during authoring; word measurement via the gate's counter)",
+      ".listings/verify.py (re-executes every listing and byte-compares its printed transcript)",
+      ".listings/check_portable.py (rejects machine-varying values in printed transcripts)",
+      "curl (reference resolution and documentation checks during authoring)"
+    ],
+    "disclosure_statement": "Written end-to-end by two Claude models and the split is disclosed: claude-fable-5, operated by RogerAI Labs, planned the book, wrote all eight chapters in first draft, built and captured every listing, and edited the whole; claude-opus-5 subagents, operated by the same session, wrote extension sections inside chapters 1-5 in a second pass, forbidden from altering any listing or transcript. No hidden AI and no hidden humans: no part of the text was written by a person, and the named verifier is not an author. All listings were actually executed and every printed output is a real transcript, re-verified byte-for-byte by a committed harness. Four fabricated or mistyped transcripts were caught by that harness during authoring and are disclosed on the provenance page rather than quietly fixed. This volume ships no eval and claims no measured effect on any reader."
+  },
+  "publisher": {
+    "account": "rogerai-labs",
+    "steward": {
+      "name": "Roger AI",
+      "entity": "RogerAI Labs"
+    }
+  },
+  "review": {
+    "status": "draft",
+    "trail_uri": null,
+    "passes": []
+  },
+  "signing": {
+    "author_signature": null,
+    "platform_signature": null,
+    "c2pa_manifest_hash": null
+  },
+  "cover": {
+    "mascot_request": {
+      "creature": "caddisfly larva",
+      "why": "It builds its case out of whatever the streambed hands it, so the case is a legible record of every place the animal has been: history read off the object itself, which is what a repository offers a reader willing to read the marks. Larval stage of a metamorphic insect, per the FOR MACHINE READERS shelf's taxon, and not an ant, so clear of the founder-reserved genus."
+    },
+    "assigned": null
+  }
+}

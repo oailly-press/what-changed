@@ -1,0 +1,78 @@
+{
+  "corpus": "what-changed seed fixtures",
+  "captured": "real git commits in scratch repositories",
+  "cases": [
+    {
+      "id": "W-01",
+      "family": "stat-vs-substance",
+      "context": "A reviewer read only the commit's stat summary and its message, which is 'simplify check'.",
+      "transcript": " auth.py | 2 --\n 1 file changed, 2 deletions(-)",
+      "claim": "The commit only simplifies the function without changing behavior.",
+      "gold": "insufficient",
+      "rationale": "The stat reports two deleted lines but shows none of them; a line count cannot establish that behavior is unchanged, and the summary is the only evidence present."
+    },
+    {
+      "id": "W-02",
+      "family": "stat-vs-substance",
+      "context": "The same commit, now shown as a full diff.",
+      "transcript": "diff --git a/auth.py b/auth.py\nindex c01e469..66c2f2b 100644\n--- a/auth.py\n+++ b/auth.py\n@@ -1,6 +1,4 @@\n def check(token, user):\n-    if not token:\n-        raise ValueError(\"missing token\")\n     if user.is_admin:\n         return True\n     return verify(token, user)",
+      "claim": "The commit only simplifies the function without changing behavior.",
+      "gold": "contradicted",
+      "rationale": "The deleted lines are the empty-token guard and its ValueError; removing a validation check changes behavior for callers passing an empty token."
+    },
+    {
+      "id": "W-03",
+      "family": "context-lines",
+      "context": "A reviewer is asked which lines this commit changed.",
+      "transcript": "diff --git a/auth.py b/auth.py\nindex c01e469..66c2f2b 100644\n--- a/auth.py\n+++ b/auth.py\n@@ -1,6 +1,4 @@\n def check(token, user):\n-    if not token:\n-        raise ValueError(\"missing token\")\n     if user.is_admin:\n         return True\n     return verify(token, user)",
+      "claim": "The commit changed the is_admin branch.",
+      "gold": "contradicted",
+      "rationale": "The is_admin lines carry a leading space, marking them as unchanged context; only the two minus-prefixed guard lines were changed."
+    },
+    {
+      "id": "W-04",
+      "family": "diff-is-not-state",
+      "context": "A reviewer wants to know what the file contains after the change.",
+      "transcript": "diff --git a/auth.py b/auth.py\nindex c01e469..66c2f2b 100644\n--- a/auth.py\n+++ b/auth.py\n@@ -1,6 +1,4 @@\n def check(token, user):\n-    if not token:\n-        raise ValueError(\"missing token\")\n     if user.is_admin:\n         return True\n     return verify(token, user)",
+      "claim": "After this commit, auth.py contains only the three lines shown as context.",
+      "gold": "insufficient",
+      "rationale": "A diff shows a transition, not a state: hunks cover only changed regions plus context, so the file may contain lines outside this hunk that the diff never displays."
+    },
+    {
+      "id": "W-05",
+      "family": "deletions",
+      "context": "A dependency file was updated; the reviewer summarized it as an upgrade.",
+      "transcript": "diff --git a/requirements.txt b/requirements.txt\nindex 9c18a7b..2c24336 100644\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,2 +1 @@\n-requests==2.30.0\n-cryptography==41.0.0\n+requests==2.31.0",
+      "claim": "The change upgrades requests from 2.30.0 to 2.31.0.",
+      "gold": "supported",
+      "rationale": "The diff shows exactly that version line replaced; the claim is true as far as it goes, though the same diff also drops cryptography, which the claim does not mention."
+    },
+    {
+      "id": "W-06",
+      "family": "deletions",
+      "context": "The same dependency commit, judged against a wider claim.",
+      "transcript": "diff --git a/requirements.txt b/requirements.txt\nindex 9c18a7b..2c24336 100644\n--- a/requirements.txt\n+++ b/requirements.txt\n@@ -1,2 +1 @@\n-requests==2.30.0\n-cryptography==41.0.0\n+requests==2.31.0",
+      "claim": "The change only bumps a version and adds no other risk.",
+      "gold": "contradicted",
+      "rationale": "The diff also deletes the cryptography pin entirely; a removed dependency is a second, unmentioned change."
+    },
+    {
+      "id": "W-07",
+      "family": "renames",
+      "context": "A file was renamed and edited in the same commit; rename detection is on.",
+      "transcript": "diff --git a/src/old_name.py b/src/new_name.py\nsimilarity index 54%\nrename from src/old_name.py\nrename to src/new_name.py\nindex 1045658..8329ccd 100644\n--- a/src/old_name.py\n+++ b/src/new_name.py\n@@ -1,2 +1,2 @@\n def handler(req):\n-    return 200\n+    return 500",
+      "claim": "The commit only renames the module.",
+      "gold": "contradicted",
+      "rationale": "The diff shows a similarity index below 100% with a changed body line: the return value went from 200 to 500 inside the rename."
+    },
+    {
+      "id": "W-08",
+      "family": "invisible-changes",
+      "context": "A formatting commit was reviewed with whitespace changes suppressed.",
+      "transcript": "== with -w (whitespace-insensitive) ==\ndiff --git a/calc.py b/calc.py\nindex c001c15..21eebfe 100644\n--- a/calc.py\n+++ b/calc.py\n@@ -1,2 +1,2 @@\n def f(x):\n-    return x+1\n+        return x + 2",
+      "claim": "The commit is a pure reformatting with no logic change.",
+      "gold": "contradicted",
+      "rationale": "Even with whitespace suppressed the diff shows the expression changing from x+1 to x + 2; the constant changed, which -w does not hide."
+    }
+  ]
+}

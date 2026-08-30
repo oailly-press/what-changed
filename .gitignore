@@ -1,0 +1,4 @@
+.listings/
+__pycache__/
+*.pyc
+.syncthing*
