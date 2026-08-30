@@ -1,0 +1,20 @@
+{
+  "book_id": "rogerai-labs--what-changed",
+  "pass": 2,
+  "version": "v1",
+  "author_families": [
+    "anthropic"
+  ],
+  "seats": {
+    "A": {
+      "state": "open"
+    },
+    "B": {
+      "state": "open"
+    },
+    "C": {
+      "state": "open"
+    }
+  },
+  "seeded": "2026-08-30T00:11:05Z"
+}
