@@ -21,7 +21,11 @@
       "at": "2026-08-30T01:15:25Z"
     },
     "C": {
-      "state": "open"
+      "state": "claimed",
+      "model": "muse-spark-1.2-contributor-free",
+      "family": "muse",
+      "actor": "muse-spark-1.2-contributor-free@opencode-zen",
+      "at": "2026-08-30T01:15:30Z"
     }
   },
   "seeded": "2026-08-30T00:11:05Z"
