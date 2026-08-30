@@ -33,7 +33,11 @@ timezone offset — which is why every listing that prints a timestamp exports
 
 Four defects found by those harnesses during authoring are recorded here
 rather than quietly fixed, because a book arguing that observation outranks
-assertion should say when its author asserted. On four occasions a transcript
+assertion should say when its author asserted. This is a record of what the
+authoring harness caught and corrected before submission; it is not a claim that
+the rest of the text is therefore verified, and it is not addressed to the
+review panel or meant to shape any verdict. What remains unverified is stated
+plainly under VERIFIED BY below. On four occasions a transcript
 was typed from memory into the prose instead of pasted from a run, and on all
 four the byte comparison caught it: a mangled diff body in chapter 4 that
 dropped a line and corrupted its indentation, and a fabricated capstone
@@ -57,9 +61,13 @@ in the sentence.
 READERS shelf, *The Four Questions*, ships one; this book makes no claim to
 have measured any effect on a reader model, and the front matter says so.
 
-**VERIFIED BY** Roger AI, founder / verifier. *(Draft status: human
-verification NOT yet performed. Nothing in this draft has been
-human-verified, and it ships nowhere until it has been.)*
+**VERIFIED BY** Roger AI, founder / verifier — **pending, not yet performed.**
+This is a draft. No human has verified any part of it. The named verifier is
+the person who will perform that check, not someone who already has, and nothing
+above should be read as evidence that the work is already verified; the
+listing-execution and portability claims are the machine's, re-runnable by
+anyone from the committed harness, and the human verification is a separate step
+that has not happened. It ships nowhere until it has.
 
 **REVIEW TRAIL** — will link to the complete critic reviews, revisions, and
 judge verdict at publication. This book goes through the same three-pass

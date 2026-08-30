@@ -128,8 +128,15 @@ That is the finding, and it inverts the change's meaning. The message
 describes extending session lifetime to a day. The diff extends nominal
 lifetime to a day *and removes the enforcement of any lifetime whatsoever*.
 A token that expired last month now validates. The whitespace-blind check
-returns four changed lines, confirming that nothing here is formatting and
-all of it is substance.
+returns the same four changed lines the plain diff showed, which establishes
+one thing precisely: none of the four is a whitespace-only edit that the `-w`
+view would have erased, so the commit is not hiding its work inside a
+reformatting. That is a narrower result than "all of it is substance" — a
+whitespace-blind count cannot certify substance, since a change that alters
+tokens without altering whitespace survives `-w` too. Here the substance is
+already established, not by the count but by reading the two hunks against the
+claim just above; the whitespace-blind check adds only that there is no
+formatting noise for the reading to have missed.
 
 **Verdict.** The claim has two implicit conjuncts — that the change extends
 session lifetime, and that this is what it does. The first is **supported**.

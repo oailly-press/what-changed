@@ -77,21 +77,59 @@ conditions and compares output byte-for-byte against the printed transcript,
 and `.listings/check_portable.py` rejects any transcript containing a value
 that would differ on another machine.
 
+## Harness custody
+
+The two checkers named above are not a description of something that happened
+once on the author's disk; they are committed with this manuscript, in the
+`.listings/` directory, and a reader can run them. `.listings/verify.py`
+extracts every ` ```bash ` listing and its ` ```output ` block from the chapter
+files, re-executes the listing in a throwaway directory under the gate's
+environment — `PATH=/usr/bin:/bin`, a scratch `HOME`, and the system and global
+git config neutralized so the run does not depend on the reader's setup — and
+compares the captured output to the printed transcript byte for byte, exiting
+nonzero on any mismatch. `.listings/check_portable.py` scans the same
+` ```output ` blocks for values that would differ on another machine — an
+authoring username, an absolute scratch path, a process id, a non-UTC timezone
+offset — and exits nonzero on a hit. The wrapper `check.sh` at the repository
+root runs both and prints `ALL CHECKS PASSED` only when each does; its captured
+run is committed as `check.log`. To reproduce the reproducibility claim rather
+than take it on assertion, clone the book's source and run `sh check.sh`; the
+publisher's pass-1 gate executes the same listings independently, which is the
+separate check the front matter describes. This mirrors how the sibling volume,
+*The Four Questions*, ships its harness, and it is the concrete form of this
+book's own rule that an unrepeatable transcript is an assertion, not evidence.
+
 ## Measured-output conditions
 
 All transcripts were captured on Gentoo Linux (kernel 6.18.31-gentoo-dist)
-with GNU userland and git, under `PATH=/usr/bin:/bin` with a scratch `HOME`,
-non-root, streams merged. Every listing pins what would otherwise vary:
-`TZ=UTC` is exported, and author and committer names, emails, and dates are
-set to fixed values, which is what makes the printed commit and blob hashes
-reproduce rather than differ on every run. Rename detection, context size, and
-whitespace handling are left at their defaults except where a listing names a
-flag, since the book's subject is what a reader sees by default.
+with GNU userland and git version 2.53.0, under `PATH=/usr/bin:/bin` with a
+scratch `HOME`, non-root, streams merged. Every listing pins what would
+otherwise vary: `TZ=UTC` is exported, and author and committer names, emails,
+and dates are set to fixed values, which is what makes the printed commit and
+blob hashes reproduce rather than differ on every run.
+
+The git configuration these transcripts assume is git's own defaults, and the
+re-verification harness enforces exactly that by running each listing with the
+system and global config files neutralized (`GIT_CONFIG_NOSYSTEM=1`, an empty
+`GIT_CONFIG_GLOBAL`), so a reader's personal or machine-wide settings cannot
+change what reproduces. The defaults that bear on these listings, stated
+explicitly because they are settings a reader's environment can silently
+override: `diff.renames` on (rename detection runs), `diff.renameLimit` at its
+default of 1000 (except the one listing that forces `-l1` to demonstrate the
+overrun), `core.autocrlf` off (no end-of-line translation, which the
+line-ending listing in chapter 6 depends on), and three lines of context
+(`diff.context` = 3), which sets the hunk-header arithmetic chapter 3 reads. A
+listing that departs from a default names the flag inline; everything else is
+the default a reader sees out of the box. One value is version-dependent and
+called out where it appears: the exact text of the "no merge base" fatal line
+in chapter 2, whose stable signal is the exit code rather than the wording.
 
 ## References
 
-Each reference is cited for the specific behavior the text asserts; all URLs
-resolved at submission without redirect.
+Each reference is cited for the specific behavior the text asserts. Every URL
+below was fetched and confirmed to resolve and to support the claim attached to
+it during revision; the git behaviors are additionally demonstrated by the
+executed listings, which are the book's primary evidence.
 
 1. git-diff — the unified format, two-dot and three-dot ranges, `-M`
    rename detection and its similarity-index threshold, `--stat`,

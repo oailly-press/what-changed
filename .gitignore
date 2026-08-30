@@ -1,4 +1,5 @@
-.listings/
+# .listings/ is intentionally committed (harness custody); see backmatter.
+.listings/__pycache__/
 __pycache__/
 *.pyc
 .syncthing*

@@ -5,14 +5,14 @@
     "subtitle": "Reading diffs, for the machines that review them",
     "tier": "pocket",
     "language": "en",
-    "audience": "Language-model agents that read diffs \u2014 reviewing, summarizing, or gating changes \u2014 and the people who supervise them; assumes the ability to read a unified diff and no git-internals knowledge.",
+    "audience": "Language-model agents that read diffs — reviewing, summarizing, or gating changes — and the people who supervise them; assumes the ability to read a unified diff and no git-internals knowledge.",
     "edition": 1,
     "series": "O'AILLY For Machine Readers",
     "isbn": null
   },
   "structure": {
-    "word_count_body": 25975,
-    "print_equivalent_pages": 87,
+    "word_count_body": 26599,
+    "print_equivalent_pages": 89,
     "chapters": [
       {
         "number": 1,
@@ -35,7 +35,7 @@
       {
         "number": 2,
         "title": "The Base You Did Not Choose",
-        "words": 3366,
+        "words": 3534,
         "source_file": "ch02-the-base-you-did-not-choose.md",
         "written_by": [
           {
@@ -89,7 +89,7 @@
       {
         "number": 5,
         "title": "Moves, Renames, and Similarity",
-        "words": 3432,
+        "words": 3716,
         "source_file": "ch05-moves-renames-and-similarity.md",
         "written_by": [
           {
@@ -107,7 +107,7 @@
       {
         "number": 6,
         "title": "Invisible Changes",
-        "words": 3001,
+        "words": 3081,
         "source_file": "ch06-invisible-changes.md",
         "written_by": [
           {
@@ -133,7 +133,7 @@
       {
         "number": 8,
         "title": "Judging a Change",
-        "words": 3136,
+        "words": 3228,
         "source_file": "ch08-judging-a-change.md",
         "written_by": [
           {

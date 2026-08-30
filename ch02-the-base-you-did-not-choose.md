@@ -293,7 +293,12 @@ merge-base exit: 1
 
 The three-dot form refuses outright — exit 128, `no merge base` — and
 `merge-base` exits 1 without printing one. Both failures are loud and
-unambiguous, which is the good news.
+unambiguous, which is the good news. The exact wording of the message is
+version-dependent — this transcript is git's phrasing on the version this book
+was measured on, recorded in the back matter, and older git prints a shorter
+`no merge base found` — so the load-bearing signal a reader should match on is
+the pair of exit codes, 128 from the three-dot `diff` and 1 from `merge-base`,
+which are stable across versions, rather than the text of the fatal line.
 
 The trap is what remains available. The two-dot form still works, because comparing two tips needs no
 ancestry at all, and it produces a confident, complete, thoroughly misleading
@@ -421,11 +426,18 @@ other.
 
 While the fork's main is merely behind the upstream's, nothing goes wrong. Both
 give the same merge base, because being behind means being an ancestor, and the
-three-dot diff is identical whichever name is used. The divergence begins the
-moment the fork's main carries a commit the upstream never took — a sync
-performed as a merge rather than a fast-forward, a local convenience change, a
-revert that was never proposed. From then on the two refs have separate tips
-and separate merge bases with the topic branch.
+three-dot diff is identical whichever name is used. What keeps the two bases
+identical is precisely that ancestry: the fork's main is safe as a stand-in for
+the upstream's only while it remains an ancestor of it. The divergence begins
+the moment the fork's main carries a commit the upstream never took, and the
+*shape* of that commit does not matter — it need not be a merge. A fork main
+that was simply fast-forwarded ahead, carrying a run of local commits in a
+straight line past the upstream tip, has left the ancestor relationship just as
+surely as one that diverged through a merge; so does a single local convenience
+change or a revert that was never proposed. From then on the two refs have
+separate tips and separate merge bases with the topic branch, and the fork-ahead
+case conceals not one stray file but every commit the fork's main added on top
+of upstream.
 
 The consequence is quiet, which is what makes it worth naming. A topic branch
 that inherited the fork's extra commit shows one contribution when compared

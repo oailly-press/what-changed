@@ -63,5 +63,6 @@ evidence, not this one's — and it ships no eval, so it claims no measured
 effect on any reader. What it offers is a set of disciplines that cost seconds
 each and that make the difference between saying what a change does with the
 evidence to back it and saying what its summary suggested. The provenance page
-opposite says what wrote it, what grounded it, where its author was caught
-asserting rather than observing, and which human verified it.
+opposite says what wrote it, what grounded it, which transcripts the authoring
+harness caught and corrected before submission, and that human verification is
+pending rather than done.

@@ -2,23 +2,23 @@
   "gate": "pass1",
   "version": "1.0",
   "date": "2026-08-29",
-  "book_dir": "books/what-changed",
+  "book_dir": "/tmp/rev-wc",
   "verdict": "PASS",
   "reject_count": 0,
   "warn_count": 0,
   "findings": [],
   "measured": {
-    "body_words_measured": 25975,
-    "print_equivalent_pages": 87,
+    "body_words_measured": 26599,
+    "print_equivalent_pages": 89,
     "chapter_words": {
       "ch01-a-diff-is-not-a-state.md": 3374,
-      "ch02-the-base-you-did-not-choose.md": 3366,
+      "ch02-the-base-you-did-not-choose.md": 3534,
       "ch03-marks-and-their-meanings.md": 3333,
       "ch04-the-summary-that-disagrees-with-itself.md": 3463,
-      "ch05-moves-renames-and-similarity.md": 3432,
-      "ch06-invisible-changes.md": 3001,
+      "ch05-moves-renames-and-similarity.md": 3716,
+      "ch06-invisible-changes.md": 3081,
       "ch07-deletions-are-changes-too.md": 2870,
-      "ch08-judging-a-change.md": 3136
+      "ch08-judging-a-change.md": 3228
     },
     "padding_metrics": {
       "chapters": {
@@ -56,10 +56,10 @@
         }
       },
       "compression_ratio": 0.3316,
-      "near_duplicate_paragraph_share": 0.0222,
+      "near_duplicate_paragraph_share": 0.022,
       "top_ngram": {
         "ngram": "*draft status: author draft; human verification",
-        "share": 0.0003
+        "share": 0.00029
       }
     }
   }

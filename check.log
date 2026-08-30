@@ -1,0 +1,5 @@
+== listings re-execute and match their transcripts ==
+listings checked: 23; mismatches: 0
+== transcripts are machine-portable ==
+portable: no usernames, home paths, scratch paths, pids, or non-UTC offsets in any printed transcript
+ALL CHECKS PASSED

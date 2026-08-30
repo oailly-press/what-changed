@@ -132,8 +132,20 @@ that is half a rewrite, presented under a header that says "rename," and the
 appropriate response is to read it as new code that happens to share a
 lineage.
 
-The threshold matters too, and it is easiest to see when two moves of the same
-kind are made in one commit.
+That last reading is a close call precisely because of where the cutoff sits.
+Rename detection has a default threshold of fifty percent: a deletion and an
+addition are paired only when at least half the file is estimated to have
+survived, so a header reporting `52%` is barely over the line, and a change two
+points less similar would have rendered as an unrelated delete-and-create with
+no rename header at all. The default is documented, and it is adjustable — the
+`-M<n>` form sets it for one invocation, configuration can move it globally —
+which is the first reason two views of the same commit can disagree about
+whether a rename happened. Knowing the number is fifty percent is what turns
+"high" and "low" similarity from impressions into a reading of where a given
+pairing sits relative to the line the tool actually drew.
+
+The threshold matters in the other direction too, and it is easiest to see when
+two moves of the same kind are made in one commit.
 
 ```bash
 export TZ=UTC
@@ -278,14 +290,54 @@ and twenty files changed with more than a thousand insertions and a thousand
 deletions — the same commit, the same tree, and a rendering that has stopped
 reconstructing what happened.
 
-Two details make this worth carrying. Git does say when it gives up: a warning
-naming the limit and the value that would suffice. But the warning goes to the
-error stream rather than into the diff, so a pipeline that captures the diff
-and discards the rest keeps a rendering that looks like an enormous rewrite
-and loses the one line explaining that it is not. And the failure is
-selective. Byte-identical files are matched cheaply and survive a tight limit;
-the pairs that drop out first are the ones that were edited during the move,
-which are exactly the pairs a reader most needed to see paired.
+The bound is a named, documented setting: `diff.renameLimit`, the number of
+files git will consider in the exhaustive part of rename detection, which
+defaults to a thousand. Past it, git does say it gave up — a warning naming the
+limit and the value that would suffice — and the warning is worth seeing rather
+than trusting to memory, since its behavior is exactly the kind of thing this
+book grades as observation over assertion.
+
+```bash
+export TZ=UTC
+export GIT_AUTHOR_NAME=A GIT_AUTHOR_EMAIL=a@e
+export GIT_COMMITTER_NAME=A GIT_COMMITTER_EMAIL=a@e
+export GIT_AUTHOR_DATE="2026-01-01T00:00:00Z" GIT_COMMITTER_DATE="2026-01-01T00:00:00Z"
+mkdir work && cd work && git init -q -b main
+for i in 1 2 3 4 5; do printf "shared line a %s\nshared line b %s\nshared line c %s\n" "$i" "$i" "$i" > "vendor_$i.txt"; done
+git add -A && git commit -qm base
+for i in 1 2 3 4 5; do git mv "vendor_$i.txt" "lib_$i.txt"; printf "one edited line %s\n" "$i" >> "lib_$i.txt"; done
+git add -A && git commit -qm "relocate and lightly edit"
+echo "== default budget: five renames, one edit each =="
+git show --stat --format="" HEAD | tail -1
+echo "== budget forced to 1: what git prints to the error stream =="
+git show --stat -l1 --format="" HEAD 2>&1 1>/dev/null
+echo "== the stat the same command produces =="
+git show --stat -l1 --format="" HEAD 2>/dev/null | tail -1
+```
+
+```output
+== default budget: five renames, one edit each ==
+ 5 files changed, 5 insertions(+)
+== budget forced to 1: what git prints to the error stream ==
+warning: exhaustive rename detection was skipped due to too many files.
+warning: you may want to set your diff.renameLimit variable to at least 5 and retry the command.
+== the stat the same command produces ==
+ 10 files changed, 20 insertions(+), 15 deletions(-)
+```
+
+The limit is forced to one here — with `-l1`, the per-invocation form of the
+setting — so that five inexact renames overrun it, but the mechanism is the one
+that fires unforced when thousands of files move at once. Read one way the
+commit is five renames with one added line each; read with detection exhausted
+it is ten files changed with thirty-five lines of churn, and the same tree
+produced both. Two details make the warning worth carrying. It goes to the
+error stream rather than into the diff, so a pipeline that captures the diff and
+discards the rest keeps a rendering that looks like an enormous rewrite and
+loses the one line explaining that it is not. And the failure is selective:
+byte-identical files are matched cheaply and survive a tight limit — which is
+why forcing the overrun above required editing each file during its move — so
+the pairs that drop out first are the ones that were edited in transit, exactly
+the pairs a reader most needed to see paired.
 
 ## Moves inside a file are invisible
 

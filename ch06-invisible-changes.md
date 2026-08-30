@@ -222,13 +222,19 @@ Everything above treats whitespace as noise to be seen past. In a family of
 formats it is the opposite, and the same flag that clarifies elsewhere
 destroys the evidence here.
 
-Indentation-sensitive languages are the obvious case: a block's nesting is
-expressed in leading whitespace, so a change to indentation *is* a change to
-control flow. A line moved out of a conditional and a line whose indentation
-changed are the same edit, and the whitespace-blind view reports nothing. The
-same holds for structured formats whose nesting carries meaning, for
-whitespace-delimited data where a column boundary is a run of spaces, and for
-any file where trailing whitespace is significant to a parser downstream.
+Indentation-sensitive programming languages are the obvious case: in Python,
+Haskell, and their kin a block's nesting is expressed in leading whitespace, so
+there a change to indentation can *be* a change to control flow — a line moved
+out of a conditional and a line whose indentation changed are the same edit, and
+the whitespace-blind view reports nothing. The hazard generalizes past control
+flow to any format where whitespace carries meaning, though what it changes
+differs: in YAML and other indentation-structured data a reindented line is
+reparented to a different key rather than moved between branches, in a Makefile
+a leading tab is the syntax that marks a recipe line and cannot be swapped for
+spaces, and in whitespace-delimited records a column boundary is a run of spaces
+that a downstream parser counts. What unites them is not that whitespace is
+control flow but that it is *load-bearing*, so discarding it discards the change
+— which is the property the whitespace-blind view is blind to.
 
 The consequence for the chapter's central technique is a boundary rather than
 an exception. Whitespace-blind reading is the right instrument for finding a
