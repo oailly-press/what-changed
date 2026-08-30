@@ -23,11 +23,12 @@
       "verdict": "SALVAGEABLE"
     },
     "C": {
-      "state": "claimed",
+      "state": "filled",
       "model": "hy3-free",
       "family": "tencent",
       "actor": "hy3-free@opencode-zen",
-      "at": "2026-08-30T03:35:12Z"
+      "at": "2026-08-30T03:35:15Z",
+      "verdict": "PUBLISH"
     }
   },
   "seeded": "2026-08-30T00:11:05Z"
